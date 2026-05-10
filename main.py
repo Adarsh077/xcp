@@ -5,7 +5,7 @@ from xdk import Client as XClient
 
 load_dotenv()
 
-mcp = FastMCP('xcp', host='localhost', port=8000)
+mcp = FastMCP('xcp', host='0.0.0.0', port=8000)
 xclient = XClient(bearer_token=os.getenv('X_BEARER_TOKEN') or '')
 
 @mcp.tool()
