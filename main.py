@@ -9,11 +9,11 @@ mcp = FastMCP('xcp', host='localhost', port=8000)
 xclient = XClient(bearer_token=os.getenv('X_BEARER_TOKEN') or '')
 
 @mcp.tool()
-def get_tweet_by_url(url: str) -> dict:
-    """Get tweet text and media by tweet URL (e.g. https://x.com/i/status/123 or https://x.com/user/status/123)"""
-    tweet_id = url.rstrip('/').split('/')[-1]
+def get_post_by_url(url: str) -> dict:
+    """Get post text and media by post URL (e.g. https://x.com/i/status/123 or https://x.com/user/status/123)"""
+    post_id = url.rstrip('/').split('/')[-1]
     post = xclient.posts.get_by_id(
-        tweet_id,
+        post_id,
         tweet_fields=['attachments', 'author_id', 'created_at', 'text'],
         expansions=['attachments.media_keys'],
         media_fields=['url', 'preview_image_url', 'type', 'width', 'height'],
